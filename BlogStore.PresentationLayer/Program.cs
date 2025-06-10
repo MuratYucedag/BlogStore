@@ -1,6 +1,22 @@
+using BlogStore.BusinessLayer.Abstract;
+using BlogStore.BusinessLayer.Concrete;
+using BlogStore.DataAccessLayer.Abstract;
+using BlogStore.DataAccessLayer.Context;
+using BlogStore.DataAccessLayer.EntityFramework;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+
+builder.Services.AddDbContext<BlogContext>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
