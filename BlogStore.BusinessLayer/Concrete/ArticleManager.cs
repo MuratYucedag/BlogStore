@@ -24,13 +24,19 @@ namespace BlogStore.BusinessLayer.Concrete
         {
             return _articleDal.GetAll();
         }
+
+        public List<Article> TGetArticlesWithCategories()
+        {
+            return _articleDal.GetArticlesWithCategories();
+        }
+
         public Article TGetById(int id)
         {
             return _articleDal.GetById(id);
         }
         public void TInsert(Article entity)
         {
-            if(entity.Title.Length>=10 && entity.Title.Length<=100 && entity.Description!="" && entity.ImageUrl.Contains("a"))
+            if (entity.Title.Length >= 10 && entity.Title.Length <= 100 && entity.Description != "" && entity.ImageUrl.Contains("a"))
             {
                 _articleDal.Insert(entity);
             }
