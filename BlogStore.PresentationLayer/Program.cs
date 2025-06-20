@@ -3,6 +3,8 @@ using BlogStore.BusinessLayer.Concrete;
 using BlogStore.DataAccessLayer.Abstract;
 using BlogStore.DataAccessLayer.Context;
 using BlogStore.DataAccessLayer.EntityFramework;
+using BlogStore.EntityLayer.Entities;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddScoped<IArticleService, ArticleManager>();
 builder.Services.AddScoped<IArticleDal, EfArticleDal>();
 
 builder.Services.AddDbContext<BlogContext>();
+builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<BlogContext>();
 
 
 builder.Services.AddControllersWithViews();
